@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields, validate
 
+
 class ProductVariantSchema(Schema):
     sku = fields.Str(required=True)
     stock = fields.Int(missing=0, validate=validate.Range(min=0))
