@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from mongoengine.errors import ValidationError as MongoValidationError
+from backend.app import limiter
 from decimal import Decimal
 from datetime import datetime
 import pytz
@@ -12,6 +13,7 @@ orders_bp = Blueprint('orders', __name__)
 
 # Create an Order (Place an Order from provided cart data)
 @orders_bp.post('/create')
+@limiter.limit("5 per minute")
 @jwt_required()
 def create_order():
     user_id = get_jwt_identity()
@@ -88,6 +90,7 @@ def create_order():
 
 # Track Order Status
 @orders_bp.get('/<order_id>')
+@limiter.limit("5 per minute")
 @jwt_required()
 def track_order(order_id):
     try:

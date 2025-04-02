@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_limiter.errors import RateLimitExceeded
 from mongoengine import connect
@@ -8,13 +9,18 @@ from backend.blueprints.auth.models import User, RevokedToken
 from datetime import timedelta
 
 jwt = JWTManager()
-
+limiter = Limiter(
+    key_func=get_remote_address,  # Determines unique user (IP-based)
+    default_limits=["10 per minute"],  # Default global limit
+    storage_uri="memory://"  #mongodb://localhost:27017/rate_limits
+)
 
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_class)
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30) # expires in 30 mintues
     
+    limiter.init_app(app)
 
     # Initialize MongoEngine
     connect(host=app.config['MONGO_URI'])
@@ -33,7 +39,14 @@ def create_app(config_class=DevelopmentConfig):
     app.register_blueprint(cart_bp, url_prefix="/cart")
     app.register_blueprint(orders_bp, url_prefix="/orders")
     app.register_blueprint(coupons_bp, url_prefix="/coupons")
-
+    
+    # Handle Rate Limit Errors
+    @app.errorhandler(RateLimitExceeded)
+    def handle_rate_limit_exceeded(e):
+        return jsonify({
+            "message": "Rate limit exceeded. Please try again later.",
+            "error": "Too Many Requests"
+        }), 429
 
     # load user
     @jwt.user_lookup_loader

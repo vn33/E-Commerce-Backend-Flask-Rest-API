@@ -3,12 +3,13 @@ from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
 from .models import Cart, CartItem
 from backend.blueprints.products.models import Product
 from decimal import Decimal
-
+from backend.app import limiter
 
 cart_bp = Blueprint('cart', __name__)
 
 # Getting the cart for a specifix user
 @cart_bp.get('/details')
+@limiter.limit("5 per minute")
 @jwt_required()
 def get_cart():
     user_id = get_jwt_identity()
@@ -18,6 +19,7 @@ def get_cart():
     return jsonify(cart.to_json()), 200
 
 @cart_bp.post('/add_item')
+@limiter.limit("5 per minute")
 @jwt_required()
 def add_to_cart():
     data = request.get_json()
@@ -71,6 +73,7 @@ def add_to_cart():
 
 
 @cart_bp.post('/update_item_quantity')
+@limiter.limit("5 per minute")
 @jwt_required()
 def update_item_quantity():
     data = request.get_json()
@@ -108,6 +111,7 @@ def update_item_quantity():
 
 # Remove an item from the cart
 @cart_bp.post('/remove_item')
+@limiter.limit("5 per minute")
 @jwt_required()
 def remove_from_cart():
     data = request.get_json()

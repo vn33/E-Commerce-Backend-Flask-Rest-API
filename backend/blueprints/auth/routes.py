@@ -5,13 +5,14 @@ from marshmallow.exceptions import ValidationError
 from .models import User, RevokedToken
 from backend.schemas.register_schema import UserRegisterSchema
 from backend.schemas.login_schema import UserLoginSchema
-
+from backend.app import limiter
 
 auth_bp = Blueprint('auth', __name__)
 user_register_schema = UserRegisterSchema()
 user_login_schema = UserLoginSchema()
 
 @auth_bp.post('/register')
+@limiter.limit("5 per minute")
 def register_user():
     json_data = request.get_json()
     try:
@@ -46,6 +47,7 @@ def register_user():
         }), 400
     
 @auth_bp.post('/login')
+@limiter.limit("5 per minute")
 def login():
     json_data = request.get_json()
     try:
@@ -77,6 +79,7 @@ def login():
     }), 200
 
 @auth_bp.get('/protected')
+@limiter.limit("10 per minute")
 @jwt_required()
 def protected():
     # Retrieving all claims from the JWT
@@ -92,6 +95,7 @@ def protected():
 
 # Regain access token from refresh token
 @auth_bp.get('/refresh_access_token')
+@limiter.limit("5 per minute")
 @jwt_required(refresh=True)
 def refresh_access_token():
     jwt_data = get_jwt()
@@ -110,6 +114,7 @@ def refresh_access_token():
     }), 200
 
 @auth_bp.get('/logout')
+@limiter.limit("5 per minute")
 @jwt_required(verify_type=False)
 def logout():
     jwt = get_jwt()

@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt
 from mongoengine.errors import ValidationError as MongoValidationError
 from mongoengine.errors import NotUniqueError as MongoUniqueError
- 
+from backend.app import limiter
 from datetime import datetime
 import pytz
 from .models import Coupon
@@ -11,6 +11,7 @@ coupons_bp = Blueprint('coupons', __name__)
 
 # FETCH ALL Coupons( Admins only)
 @coupons_bp.get('/all')
+@limiter.limit("5 per minute")
 @jwt_required()
 def get_all_coupons():
     claims = get_jwt()
@@ -27,6 +28,7 @@ def get_all_coupons():
 
 # CREATE COUPON (Admin only)
 @coupons_bp.post('/create')
+@limiter.limit("5 per minute")
 @jwt_required()
 def create_coupon():
     claims = get_jwt()
@@ -71,6 +73,7 @@ def create_coupon():
 
 # UPDATE COUPON (Admin only)
 @coupons_bp.put('/update/<coupon_code>')
+@limiter.limit("5 per minute")
 @jwt_required()
 def update_coupon(coupon_code):
     claims = get_jwt()
@@ -105,6 +108,7 @@ def update_coupon(coupon_code):
 
 # DELETE COUPON (Admin only)
 @coupons_bp.delete('/delete/<coupon_code>')
+@limiter.limit("3 per minute")
 @jwt_required()
 def delete_coupon(coupon_code):
     claims = get_jwt()
@@ -129,6 +133,7 @@ def delete_coupon(coupon_code):
 
 # User Specific Coupons
 @coupons_bp.get('/my_coupons')
+@limiter.limit("5 per minute")
 @jwt_required()
 def get_user_coupons():
     claims = get_jwt()
