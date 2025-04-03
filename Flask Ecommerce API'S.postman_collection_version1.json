@@ -1,0 +1,1332 @@
+{
+	"info": {
+		"_postman_id": "75976ee0-c2e6-47b0-a96e-72e1c42df71b",
+		"name": "Flask Ecommerce API'S",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37516947"
+	},
+	"item": [
+		{
+			"name": "User/Admin Auth",
+			"item": [
+				{
+					"name": "Refresh Access Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzUzMDI3MCwianRpIjoiYWMzMzA1MTUtNWZlZC00OGQyLWE5ZTEtMjNiZmY3NGEyYjhiIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiI2N2ViYzM5YTc5ZTM1YjE0MzJhYWVmZWYiLCJuYmYiOjE3NDM1MzAyNzAsImNzcmYiOiJiZmE0ZWUyMC02NGQ0LTQwZWYtOThmNi1iZjMyYWIyNDQ3MTAiLCJleHAiOjE3NDYxMjIyNzAsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20ifQ.kMIg94GbxHGZ_ANCzd_-uHXYi4ycrBgNKkusCzWNJvo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/auth/refresh_access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"customer@example.com\",\r\n  \"password\": \"customer123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/register"
+					},
+					"response": [
+						{
+							"name": "user register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"prime2@example.com\",\r\n  \"password\": \"prime123\",\r\n  \"role\": \"prime_customer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/auth/register"
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:46:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\",\n    \"user\": {\n        \"email\": \"prime2@example.com\",\n        \"id\": \"67ee834087845c5169e53234\",\n        \"role\": \"prime_customer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"customer@example.com\",\r\n  \"password\": \"customer123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/register"
+					},
+					"response": [
+						{
+							"name": "user login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"prime2@example.com\",\r\n  \"password\": \"prime123\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/auth/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:48:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1083"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Logged in successfully\",\n    \"tokens\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzY4NDQ4NCwianRpIjoiOTcxOWI0NDgtOTUzNC00NDMwLWFhNGYtMjUxMzhkODg4MDk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWU4MzQwODc4NDVjNTE2OWU1MzIzNCIsIm5iZiI6MTc0MzY4NDQ4NCwiY3NyZiI6ImFkMjEwM2E4LWJmMmItNDM4Ni05OGEzLTk3ZDAzNTNjMDUxMiIsImV4cCI6MTc0MzY4NjI4NCwicm9sZSI6InByaW1lX2N1c3RvbWVyIiwiZW1haWwiOiJwcmltZTJAZXhhbXBsZS5jb20ifQ.oNYiga5xtzcnKabX01j9JkQW4Yfn6vvznzwPcENrt-Y\",\n        \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzY4NDQ4NCwianRpIjoiYzFlNGEzMDktYzAzZi00NDAwLWI0ZDktZTMyM2YwZTBlNjY5IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiI2N2VlODM0MDg3ODQ1YzUxNjllNTMyMzQiLCJuYmYiOjE3NDM2ODQ0ODQsImNzcmYiOiJjOTYxZjQ4Yi04Mzc2LTRkNzgtOTU3NC03NjRjN2I4YzQxNGIiLCJleHAiOjE3NDYyNzY0ODQsInJvbGUiOiJwcmltZV9jdXN0b21lciIsImVtYWlsIjoicHJpbWUyQGV4YW1wbGUuY29tIn0.ml8rjdjUHtOApXMTu9D8dR4RO4wfy-_t8o-DXD3zD0I\"\n    },\n    \"user\": {\n        \"email\": \"prime2@example.com\",\n        \"id\": \"67ee834087845c5169e53234\",\n        \"role\": \"prime_customer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "protected_auth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzUwNjQ4NSwianRpIjoiOTBmZmM1ODQtMzMxMC00M2FmLTliMzEtNTUzYjE0NGJkNzlmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWJjMWNhNzllMzViMTQzMmFhZWZlZSIsIm5iZiI6MTc0MzUwNjQ4NSwiY3NyZiI6ImMzOWRhMWJmLTA0MDktNGNjYi1hMzQ0LWExM2UwNTEyNDk3MCIsImV4cCI6MTc0MzUwNzM4NSwicm9sZSI6ImN1c3RvbWVyIiwiZW1haWwiOiJjdXN0b21lckBleGFtcGxlLmNvbSJ9.2XPuoJLvd3haUve8vx6UQkwEP9y5eLeHpbpjYujEGL0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/auth/protected"
+					},
+					"response": [
+						{
+							"name": "protected_auth",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/auth/protected"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:48:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"prime2@example.com\",\n    \"message\": \"Protected route accessed\",\n    \"role\": \"prime_customer\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User Logout",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "product list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products/all_products?page=1&per_page=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"all_products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "product list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/products/all_products?page=1&per_page=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"products",
+										"all_products"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 08:18:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1293"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"page\": 1,\n    \"per_page\": 5,\n    \"products\": [\n        {\n            \"category\": \"Wearables\",\n            \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\n            \"id\": \"67eba0f673b2de600ddd7b5c\",\n            \"images\": [\n                \"https://example.com/images/smartwatch-x.jpg\"\n            ],\n            \"name\": \"Smart Watch X\",\n            \"variants\": [\n                {\n                    \"price\": 129.99,\n                    \"sku\": \"SWX-001\",\n                    \"stock\": 60\n                }\n            ]\n        },\n        {\n            \"category\": \"Electronics\",\n            \"description\": \"Upgraded version with better battery life.\",\n            \"id\": \"67eba24773b2de600ddd7b5e\",\n            \"images\": [\n                \"https://example.com/images/earbuds-pro1.jpg\"\n            ],\n            \"name\": \"Wireless Earbuds Pro\",\n            \"variants\": [\n                {\n                    \"price\": 79.99,\n                    \"sku\": \"EBP-001\",\n                    \"stock\": 80\n                }\n            ]\n        },\n        {\n            \"category\": \"Wearables\",\n            \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\n            \"id\": \"67ed6dab0605eae2c09159e1\",\n            \"images\": [\n                \"https://example.com/images/smartwatch-x.jpg\"\n            ],\n            \"name\": \"Smart Watch X\",\n            \"variants\": [\n                {\n                    \"price\": 129.99,\n                    \"sku\": \"SWX-001\",\n                    \"stock\": 60\n                }\n            ]\n        }\n    ],\n    \"total\": 3,\n    \"total_pages\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzUwNjQ4NSwianRpIjoiOTBmZmM1ODQtMzMxMC00M2FmLTliMzEtNTUzYjE0NGJkNzlmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWJjMWNhNzllMzViMTQzMmFhZWZlZSIsIm5iZiI6MTc0MzUwNjQ4NSwiY3NyZiI6ImMzOWRhMWJmLTA0MDktNGNjYi1hMzQ0LWExM2UwNTEyNDk3MCIsImV4cCI6MTc0MzUwNzM4NSwicm9sZSI6ImN1c3RvbWVyIiwiZW1haWwiOiJjdXN0b21lckBleGFtcGxlLmNvbSJ9.2XPuoJLvd3haUve8vx6UQkwEP9y5eLeHpbpjYujEGL0"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Smart Watch X\",\r\n  \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\r\n  \"category\": \"Wearables\",\r\n  \"images\": [\r\n    \"https://example.com/images/smartwatch-x.jpg\"\r\n  ],\r\n  \"variants\": [\r\n    {\r\n      \"sku\": \"SWX-001\",\r\n      \"stock\": 60,\r\n      \"price\": \"129.99\"\r\n    }\r\n  ]\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/products/create_product"
+					},
+					"response": [
+						{
+							"name": "RBAC handling",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Smart Watch Y\",\r\n  \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\r\n  \"category\": \"Wearables\",\r\n  \"images\": [\r\n    \"https://example.com/images/smartwatch-x.jpg\"\r\n  ],\r\n  \"variants\": [\r\n    {\r\n      \"sku\": \"SWX-002\",\r\n      \"stock\": 60,\r\n      \"price\": \"159.99\"\r\n    }\r\n  ]\r\n}\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/products/create_product"
+							},
+							"status": "FORBIDDEN",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:51:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Only admins can create products\"\n}"
+						},
+						{
+							"name": "Create Product(Admin)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Smart Watch Y\",\r\n  \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\r\n  \"category\": \"Wearables\",\r\n  \"images\": [\r\n    \"https://example.com/images/smartwatch-x.jpg\"\r\n  ],\r\n  \"variants\": [\r\n    {\r\n      \"sku\": \"SWX-002\",\r\n      \"stock\": 60,\r\n      \"price\": \"159.99\"\r\n    }\r\n  ]\r\n}\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/products/create_product"
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:53:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "{{url}}/products/update_product/"
+					},
+					"response": [
+						{
+							"name": "update product",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Smart Watch X\",\r\n  \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\r\n  \"category\": \"Wearables\",\r\n  \"images\": [\r\n    \"https://example.com/images/smartwatch-x.jpg\"\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/products/update_product/67eba0f673b2de600ddd7b5c"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:54:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "432"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product updated successfully\",\n    \"product\": {\n        \"category\": \"Wearables\",\n        \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\n        \"id\": \"67eba0f673b2de600ddd7b5c\",\n        \"images\": [\n            \"https://example.com/images/smartwatch-x.jpg\"\n        ],\n        \"name\": \"Smart Watch X\",\n        \"variants\": [\n            {\n                \"price\": 129.99,\n                \"sku\": \"SWX-001\",\n                \"stock\": 60\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Product details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/products/67eba14173b2de600ddd7b5d"
+					},
+					"response": [
+						{
+							"name": "product details(public)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/products/67eba0f673b2de600ddd7b5c"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:55:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "340"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": \"Wearables\",\n    \"description\": \"Feature-packed smart watch with heart rate monitor and GPS.\",\n    \"id\": \"67eba0f673b2de600ddd7b5c\",\n    \"images\": [\n        \"https://example.com/images/smartwatch-x.jpg\"\n    ],\n    \"name\": \"Smart Watch X\",\n    \"variants\": [\n        {\n            \"price\": 129.99,\n            \"sku\": \"SWX-001\",\n            \"stock\": 60\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzUzMTQ1MCwianRpIjoiMzQ4MTBmYTUtYWRlMy00NDA3LWE4NWMtZmIyZGIwYjdkOTdiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWJjMzlhNzllMzViMTQzMmFhZWZlZiIsIm5iZiI6MTc0MzUzMTQ1MCwiY3NyZiI6ImY4ODczMTVhLTE1YzAtNGQxYi1hYWE3LTk2YzI4ZDY4NmZmYyIsImV4cCI6MTc0MzUzMjM1MCwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSJ9.jiJWw_rq8WXW7OfKmn1aeFqhic67DYemhCDro6S7jRE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/products/delete_product/67ec292fc3af436008b5e12c"
+					},
+					"response": [
+						{
+							"name": "delete product",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{url}}/products/delete_product/67eba0f673b2de600ddd7b5c"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:56:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Auth Token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/cart/details"
+					},
+					"response": [
+						{
+							"name": "cart empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart/details"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:56:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cart is empty\"\n}"
+						},
+						{
+							"name": "after adding item",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart/details"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:58:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"price\": \"79.99\",\n            \"product_id\": \"67eba24773b2de600ddd7b5e\",\n            \"quantity\": 2\n        }\n    ],\n    \"user_id\": \"67ee834087845c5169e53234\"\n}"
+						},
+						{
+							"name": "after adding one more item",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart/details"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:01:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "272"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"price\": \"79.99\",\n            \"product_id\": \"67eba24773b2de600ddd7b5e\",\n            \"quantity\": 2\n        },\n        {\n            \"price\": \"159.99\",\n            \"product_id\": \"67ee84e687845c5169e53235\",\n            \"quantity\": 1\n        }\n    ],\n    \"user_id\": \"67ee834087845c5169e53234\"\n}"
+						},
+						{
+							"name": "after removing a item",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart/details"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:02:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"price\": \"159.99\",\n            \"product_id\": \"67ee84e687845c5169e53235\",\n            \"quantity\": 1\n        }\n    ],\n    \"user_id\": \"67ee834087845c5169e53234\"\n}"
+						},
+						{
+							"name": "after updating item quantity",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart/details"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:03:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"price\": \"159.99\",\n            \"product_id\": \"67ee84e687845c5169e53235\",\n            \"quantity\": 5\n        }\n    ],\n    \"user_id\": \"67ee834087845c5169e53234\"\n}"
+						},
+						{
+							"name": "once order is placed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart/details"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:11:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Cart is empty\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Item to Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzU4MTM2OCwianRpIjoiZmIxNzJiZjgtODljMC00ZWEwLWJkNDItMWQ2Zjk0MGUxN2I2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWJjMWNhNzllMzViMTQzMmFhZWZlZSIsIm5iZiI6MTc0MzU4MTM2OCwiY3NyZiI6ImRkZjM3MTVkLWMyODEtNDg1MC1hYTExLTFjNmMzZmNjYzVkZiIsImV4cCI6MTc0MzU4MjI2OCwicm9sZSI6ImN1c3RvbWVyIiwiZW1haWwiOiJjdXN0b21lckBleGFtcGxlLmNvbSJ9._E6inPF1rjBfSQiLOLw_fy7jgXr6l4mNWCkq8x9eMvo"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":\"67ebc1ca79e35b1432aaefee\",\r\n    \"product_id\":\"67eba0f673b2de600ddd7b5c\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/cart/add_item"
+					},
+					"response": [
+						{
+							"name": "added item to cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\":\"67eba24773b2de600ddd7b5e\",\r\n    \"quantity\": 2\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/cart/add_item"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:57:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "233"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart\": {\n        \"items\": [\n            {\n                \"price\": \"79.99\",\n                \"product_id\": \"67eba24773b2de600ddd7b5e\",\n                \"quantity\": 2\n            }\n        ],\n        \"user_id\": \"67ee834087845c5169e53234\"\n    },\n    \"message\": \"Item added to cart\"\n}"
+						},
+						{
+							"name": "added one more item",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\":\"67ee84e687845c5169e53235\",\r\n    \"quantity\": 1\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/cart/add_item"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 12:59:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "349"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart\": {\n        \"items\": [\n            {\n                \"price\": \"79.99\",\n                \"product_id\": \"67eba24773b2de600ddd7b5e\",\n                \"quantity\": 2\n            },\n            {\n                \"price\": \"159.99\",\n                \"product_id\": \"67ee84e687845c5169e53235\",\n                \"quantity\": 1\n            }\n        ],\n        \"user_id\": \"67ee834087845c5169e53234\"\n    },\n    \"message\": \"Item added to cart\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Remove Item from Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzU4MjQwNiwianRpIjoiNDA3NDFkOTctMDkxZC00OTg2LThjM2YtZDUxZmUyZjE5M2VkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWJjMWNhNzllMzViMTQzMmFhZWZlZSIsIm5iZiI6MTc0MzU4MjQwNiwiY3NyZiI6ImUwMTQ2MWEyLWQxZWEtNGQ2YS1iMjQ0LWVkNDM3NTNiZjdiOCIsImV4cCI6MTc0MzU4NDIwNiwicm9sZSI6ImN1c3RvbWVyIiwiZW1haWwiOiJjdXN0b21lckBleGFtcGxlLmNvbSJ9.9LRB89QBddACiuzZ8EGjV78FrCsmRludb9l7PW490Jc"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":\"67eba0f673b2de600ddd7b5c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/cart/remove_item"
+					},
+					"response": [
+						{
+							"name": "Remove Item from Cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\":\"67eba24773b2de600ddd7b5e\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/cart/remove_item"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:01:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart\": {\n        \"items\": [\n            {\n                \"price\": \"159.99\",\n                \"product_id\": \"67ee84e687845c5169e53235\",\n                \"quantity\": 1\n            }\n        ],\n        \"user_id\": \"67ee834087845c5169e53234\"\n    },\n    \"message\": \"Item removed from cart\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update item quantity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MzU4ODg2MCwianRpIjoiYWRkMDM0YTgtODcyNy00YjM3LTg1OWUtYzExN2U0OTU2NWE0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjY3ZWJjMWNhNzllMzViMTQzMmFhZWZlZSIsIm5iZiI6MTc0MzU4ODg2MCwiY3NyZiI6ImE5MjExMjQxLWRkODYtNDgxMS1hZDRlLTUxMDQ4MDA1MjBmMCIsImV4cCI6MTc0MzU5MDY2MCwicm9sZSI6ImN1c3RvbWVyIiwiZW1haWwiOiJjdXN0b21lckBleGFtcGxlLmNvbSJ9.1lSH9j6gL6h3l6hgEYBy4BZw_ynNKHlS08itL3wHVxk"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":\"67eba24773b2de600ddd7b5e\",\r\n    \"quantity\": 1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/cart/update_item_quantity"
+					},
+					"response": [
+						{
+							"name": "updating item quantity",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\":\"67ee84e687845c5169e53235\",\r\n    \"quantity\": 5\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/cart/update_item_quantity"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:03:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cart\": {\n        \"items\": [\n            {\n                \"price\": \"159.99\",\n                \"product_id\": \"67ee84e687845c5169e53235\",\n                \"quantity\": 5\n            }\n        ],\n        \"user_id\": \"67ee834087845c5169e53234\"\n    },\n    \"message\": \"Cart updated successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Auth Token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/orders/create"
+					},
+					"response": [
+						{
+							"name": "create order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/orders/create"
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:04:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "442"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Order placed successfully\",\n    \"order\": {\n        \"created_at\": \"2025-04-03T12:46:08.869489+00:00\",\n        \"discount_applied\": 0,\n        \"final_amount\": 799.95,\n        \"id\": \"67ee876287845c5169e53237\",\n        \"items\": [\n            {\n                \"price\": 159.99,\n                \"product_id\": \"67ee84e687845c5169e53235\",\n                \"quantity\": 5\n            }\n        ],\n        \"status\": \"Pending\",\n        \"total_amount\": 799.95,\n        \"user_id\": \"67ee834087845c5169e53234\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Track order status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Auth Token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/orders/67ed187165179665bb2c1ac4"
+					},
+					"response": [
+						{
+							"name": "track order status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/orders/67ee876287845c5169e53237"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:09:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "394"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"order\": {\n        \"created_at\": \"2025-04-03T12:46:08.869000\",\n        \"discount_applied\": 0,\n        \"final_amount\": 799.95,\n        \"id\": \"67ee876287845c5169e53237\",\n        \"items\": [\n            {\n                \"price\": 159.99,\n                \"product_id\": \"67ee84e687845c5169e53235\",\n                \"quantity\": 5\n            }\n        ],\n        \"status\": \"Pending\",\n        \"total_amount\": 799.95,\n        \"user_id\": \"67ee834087845c5169e53234\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Coupons",
+			"item": [
+				{
+					"name": "Create Coupon",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Admin Auth Token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"PRIMEDISCOUNT30\",\r\n  \"discount_percent\": 30,\r\n  \"expiry\": \"2025-12-31T23:59:59+00:00\",\r\n  \"eligible_roles\":[\"prime_customer\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/coupons/create"
+					},
+					"response": [
+						{
+							"name": "create coupon",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"code\": \"PRIMEDISCOUNT40\",\r\n  \"discount_percent\": 40,\r\n  \"expiry\": \"2025-12-31T23:59:59+00:00\",\r\n  \"eligible_roles\":[\"prime_customer\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url}}/coupons/create"
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.1.3 Python/3.11.5"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Apr 2025 13:10:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "259"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"coupon\": {\n        \"code\": \"PRIMEDISCOUNT40\",\n        \"discount_percent\": 40,\n        \"eligible_roles\": [\n            \"prime_customer\"\n        ],\n        \"expiry\": \"2025-12-31T23:59:59+00:00\",\n        \"id\": \"67ee88b0a816df4c28502d31\"\n    },\n    \"message\": \"Coupon created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Coupon",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Admin Auth Token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"eligible_roles\":[\"prime_customer\", \"admin\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/coupons/update/PRIMEDISCOUNT50"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All Coupons(Admin only)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Coupon",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Admin Auth Token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/coupons/delete/PRIMEDISCOUNT30"
+					},
+					"response": []
+				},
+				{
+					"name": "My Coupons",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test mongodb connection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/testdb_connection/test_db"
+			},
+			"response": []
+		}
+	]
+}
