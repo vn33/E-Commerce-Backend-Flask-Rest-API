@@ -162,9 +162,9 @@ Payload:
 This endpoint fetches items from the cart. Payload:
     ```json
     {
-        "coupon_code": "DISCOUNT10"  // Optional
+        "coupon_code": "DISCOUNT10"  #Optional
     }
-    ``
+    ```
 - **Track Order**: `GET /orders/<order_id>`
 
 ### Discount & Coupon System
