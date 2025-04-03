@@ -8,7 +8,7 @@ from config import DevelopmentConfig
 from backend.blueprints.auth.models import User, RevokedToken
 from datetime import timedelta
 from flask_caching import Cache
-from celery_utils import celery_init_app
+from .celery_utils import celery_init_app
 
 jwt = JWTManager()
 limiter = Limiter(
@@ -18,7 +18,7 @@ limiter = Limiter(
 )
 
 cache = Cache()
-
+celery_app = None
 
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
@@ -26,9 +26,8 @@ def create_app(config_class=DevelopmentConfig):
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30) # expires in 30 
     app.config.from_mapping(
         CELERY=dict(
-            broker_url="redis://localhost",
-            result_backend="redis://localhost",
-            task_ignore_result=True,
+            broker_url="redis://localhost:6379/0",
+            result_backend="redis://localhost:6379/0",
         ),
     )
     
@@ -39,7 +38,9 @@ def create_app(config_class=DevelopmentConfig):
     connect(host=app.config['MONGO_URI'])
     jwt.init_app(app)
 
-    celery_init_app(app)
+    celery_app = celery_init_app(app)
+    celery_app.set_default()
+
 
     from backend.blueprints.testdb_connection.routes import test_db_bp
     from backend.blueprints.auth.routes import auth_bp
