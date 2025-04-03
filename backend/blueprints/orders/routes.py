@@ -8,6 +8,7 @@ import pytz
 from .models import Order, OrderItem
 from backend.blueprints.coupons.models import Coupon
 from backend.blueprints.cart.models import Cart
+from backend.tasks.notifications import send_order_notification
 
 orders_bp = Blueprint('orders', __name__)
 
@@ -77,6 +78,9 @@ def create_order():
         # Clearing the Cart after order creation
         cart.items = []
         cart.save()
+
+        # Queue the background task for order notification
+        send_order_notification.delay(str(order.pk))
 
         return jsonify({
             "message": "Order placed successfully",
