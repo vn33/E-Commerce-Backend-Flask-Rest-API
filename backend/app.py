@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager
 from config import DevelopmentConfig
 from backend.blueprints.auth.models import User, RevokedToken
 from datetime import timedelta
+from flask_caching import Cache
 
 jwt = JWTManager()
 limiter = Limiter(
@@ -15,12 +16,15 @@ limiter = Limiter(
     storage_uri="memory://"  #mongodb://localhost:27017/rate_limits
 )
 
+cache = Cache()
+
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_class)
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30) # expires in 30 mintues
     
     limiter.init_app(app)
+    cache.init_app(app)
 
     # Initialize MongoEngine
     connect(host=app.config['MONGO_URI'])

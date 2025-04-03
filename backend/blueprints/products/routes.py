@@ -4,14 +4,18 @@ from mongoengine.errors import ValidationError as MongoValidationError
 from marshmallow import ValidationError
 from .models import Product
 from backend.schemas.product_schema import ProductSchema
-from backend.app import limiter
+from backend.app import limiter, cache
+
+ONE_DAY = 60 * 60 * 24 * 1
+ONE_WEEK = ONE_DAY * 7
 
 products_bp = Blueprint('products', __name__)
 product_schema = ProductSchema()
 
-# FETCHING ALL PRODUCTS with Pagination  #
-#----------------------------------------#
+# FETCHING ALL PRODUCTS with Pagination (Cached)
+#-----------------------------------------------
 @products_bp.get('/all_products')
+@cache.cached(timeout=ONE_DAY, key_prefix="all_products")
 @limiter.limit("5 per minute")
 def get_all_products():
     page = request.args.get('page', default=1, type=int)
@@ -35,8 +39,9 @@ def get_all_products():
     }), 200
 
 
-# CREATE PRODUCT with JWT Auth & RBAC  #
-#---------------------------------------#
+# CREATE PRODUCT with JWT Auth & RBAC 
+# (Clear caches on successful creation)
+# --------------------------------------
 @products_bp.post('/create_product')
 @limiter.limit("3 per minute")
 @jwt_required()
@@ -59,6 +64,8 @@ def create_product():
     try:
         # create a new product document
         product = Product(**data).save()
+        # clearing caches since product data has changed
+        cache.clear()
         return jsonify({
             "message": "Product created successfully"
             }), 201
@@ -69,9 +76,10 @@ def create_product():
         }), 400
     
 
-# READ PRODUCT #
-#--------------#
+# READ PRODUCT (Cached)
+# ---------------------
 @products_bp.get('/<product_id>')
+@cache.cached(timeout=ONE_DAY, key_prefix="product_{product_id}")
 @limiter.limit("10 per minute")
 def read_product(product_id):
     try:
@@ -81,8 +89,9 @@ def read_product(product_id):
         return jsonify({"message": "Product not found"}), 404
 
 
-# UPDATE PRODUCT with JWT Auth & RBAC  #
-#---------------------------------------#
+# UPDATE PRODUCT with JWT Auth & RBAC 
+# (Clear caches on successful update)
+# --------------------------------------
 @products_bp.put('/update_product/<product_id>')
 @limiter.limit("3 per minute") 
 @jwt_required()
@@ -104,7 +113,9 @@ def update_product(product_id):
     try:
         product = Product.objects.get(id=product_id)
         product.update(**data)
-        product.reload()  # Refresh product data after update
+        product.reload()  # Refreshing product data after update
+        # Clearing caches to reflect updates
+        cache.clear()
         return jsonify({
             "message": "Product updated successfully",
             "product": product.to_json()
@@ -118,8 +129,9 @@ def update_product(product_id):
         }), 400
 
 
-# DELETE PRODUCT #
-#----------------#
+# DELETE PRODUCT with JWT Auth & RBAC 
+# (Clear caches on successful deletion)
+# ----------------------------------------
 @products_bp.delete('/delete_product/<product_id>')
 @limiter.limit("2 per minute")
 @jwt_required()
@@ -131,6 +143,8 @@ def delete_product(product_id):
     try:
         product = Product.objects.get(id=product_id)
         product.delete()
+        # Clearing caches to reflect deletion
+        cache.clear()
         return jsonify({"message": "Product deleted successfully"}), 200
     except Product.DoesNotExist:
         return jsonify({"message": "Product not found"}), 404
